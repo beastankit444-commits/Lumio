@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lumio | Adaptive learning</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="app-shell">
+        <header class="topbar">
+            <button class="brand" type="button" data-screen="home-screen">Lumio<span>.</span></button>
+            <div class="status-pill"><i></i> Adaptive learning</div>
+        </header>
+
+        <section id="home-screen" class="screen active" aria-labelledby="home-title">
+            <div class="hero-copy">
+                <p class="eyebrow">Your next smart session</p>
+                <h1 id="home-title">Study smarter.<br><em>Adapt faster.</em></h1>
+                <p class="lede">An adaptive quiz system that adjusts question difficulty based on your performance.</p>
+                <div class="hero-actions">
+                    <button class="button button-primary" type="button" data-screen="setup-screen">Start Quiz <span>-></span></button>
+                    <button class="button button-quiet" type="button" data-screen="about-screen">About</button>
+                </div>
+            </div>
+            <div class="hero-panel" aria-label="Lumio overview">
+                <div class="orbit-mark"><span>3</span><small>levels</small></div>
+                <div class="panel-note">A focused loop for better recall</div>
+                <div class="panel-stats"><strong>03</strong><span>subjects</span><strong>01</strong><span>clear goal</span></div>
+            </div>
+        </section>
+
+        <section id="about-screen" class="screen compact-screen" aria-labelledby="about-title">
+            <button class="back-link" type="button" data-screen="home-screen">&lt;- Back home</button>
+            <p class="eyebrow">The idea</p>
+            <h2 id="about-title">A quiz that meets<br><em>your current level.</em></h2>
+            <p class="lede">Lumio is a rule-based adaptive quiz engine. Correct answers move the next question up a level; wrong answers bring the challenge down. It is simple by design, and honest about what it does.</p>
+            <div class="feature-row"><span>01</span><strong>Choose your focus</strong><span>Math, Physics, or Chemistry</span></div>
+            <div class="feature-row"><span>02</span><strong>Answer in the flow</strong><span>One question at a time</span></div>
+            <div class="feature-row"><span>03</span><strong>Read your pattern</strong><span>Score by topic at the end</span></div>
+        </section>
+
+        <section id="setup-screen" class="screen compact-screen" aria-labelledby="setup-title">
+            <button class="back-link" type="button" data-screen="home-screen">&lt;- Back home</button>
+            <p class="eyebrow">Set your session</p>
+            <h2 id="setup-title">What are you<br><em>working on?</em></h2>
+            <form id="setup-form">
+                <fieldset>
+                    <legend>Subject</legend>
+                    <div class="choice-grid subject-grid">
+                        <label class="choice-card selected"><input type="radio" name="subject" value="mixed" checked><span>Mixed</span><small>Everything</small></label>
+                        <label class="choice-card"><input type="radio" name="subject" value="math"><span>Math</span><small>Numbers & logic</small></label>
+                        <label class="choice-card"><input type="radio" name="subject" value="physics"><span>Physics</span><small>Motion & matter</small></label>
+                        <label class="choice-card"><input type="radio" name="subject" value="chemistry"><span>Chemistry</span><small>Atoms & bonds</small></label>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Questions</legend>
+                    <div class="choice-grid count-grid">
+                        <label class="choice-card selected"><input type="radio" name="question_count" value="5" checked><span>5</span><small>Quick pulse</small></label>
+                        <label class="choice-card"><input type="radio" name="question_count" value="10"><span>10</span><small>Steady session</small></label>
+                        <label class="choice-card"><input type="radio" name="question_count" value="15"><span>15</span><small>Deep practice</small></label>
+                        <label class="choice-card"><input type="radio" name="question_count" value="20"><span>20</span><small>Full focus</small></label>
+                    </div>
+                </fieldset>
+                <p id="setup-error" class="error-message" role="alert"></p>
+                <button class="button button-primary wide-button" type="submit">Begin session <span>-></span></button>
+            </form>
+        </section>
+
+        <section id="quiz-screen" class="screen quiz-screen" aria-labelledby="question-text">
+            <div class="quiz-meta"><span id="question-count">Question 1 / 5</span><span>Difficulty <b id="difficulty">1</b></span></div>
+            <div class="progress-track"><div id="quiz-progress" class="progress-fill"></div></div>
+            <p id="question-topic" class="eyebrow">Math</p>
+            <h2 id="question-text">Question text</h2>
+            <form id="answer-form">
+                <label class="answer-label" for="answer">Your answer</label>
+                <input id="answer" name="answer" autocomplete="off" required placeholder="Type your answer here...">
+                <p id="answer-feedback" class="feedback" role="status"></p>
+                <button id="answer-button" class="button button-primary wide-button" type="submit">Submit answer <span>-></span></button>
+            </form>
+        </section>
+
+        <section id="results-screen" class="screen results-screen" aria-labelledby="results-title">
+            <p class="eyebrow">Session complete</p>
+            <h2 id="results-title">Your results are<br><em>in.</em></h2>
+            <div class="score-line"><strong id="result-score">8 / 10</strong><span id="result-percentage">80%</span><b id="result-rating">Very Good</b></div>
+            <div class="results-divider"></div>
+            <div id="topic-results" class="topic-results"></div>
+            <div class="weakest"><span>Weakest topic</span><strong id="weakest-topic">Physics</strong></div>
+            <div class="results-actions"><button class="button button-primary" type="button" data-screen="setup-screen">Try again <span>-></span></button><button class="button button-quiet" type="button" data-screen="home-screen">Back to home</button></div>
+        </section>
+    </main>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
